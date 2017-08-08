@@ -1,0 +1,16 @@
+.app {
+  
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+}
+
+.todo__category {
+
+}
+
+.todo__tasklist {
+
+}
