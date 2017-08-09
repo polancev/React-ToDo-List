@@ -1,35 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Category from './components/Category';
+import CategoryList from './components/CategoryList';
 import TaskList from './components/TaskList';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categories: [
-        {
-          id    : 1,
-          name  : 'Category 1',
-          todoes: [
-            {
-              id: 1,
-              title: 'To-Do Item #1',
-              description: '',
-              done: true
-            },
-            {
-              id: 2,
-              title: 'To-Do Item #2',
-              description: '',
-              done: true
-            }
-          ]
-        },
-        
-      ]
-    }
+
+    const categories = [{
+        id: 1,
+        title: 'Category 1',
+        children: []
+      }, {
+        id: 2,
+        title: 'Category 2',
+        children: [{
+          id: 1,
+          title: 'Category 2 1',
+          children: []
+        }, {
+          id: 2,
+          title: 'Category 2 2',
+          children: []
+        }
+        ]
+    }];
+
+    const todoes = [{
+        id: 1,
+        title: 'To-Do Item #1',
+        category: 1,
+        description: '',
+        done: true
+      }, {
+        id: 2,
+        title: 'To-Do Item #2',
+        category: 1,
+        description: '',
+        done: true
+      }];
+
+    this.state = { categories, todoes, tasks: [] };
+  }
+
+  handleCategoryClick = (categoryId) => {
+    const tasks = this.state.todoes.filter((todo) => todo.category === categoryId);
+    this.setState({ tasks });
   }
 
   render() {
@@ -38,10 +55,13 @@ class App extends Component {
         <h2>To-Do List</h2>
         <div className="todo">
           <div className="todo__category">
-            <Category></Category>
+            <CategoryList 
+              list={this.state.categories}
+              categoryClick={this.handleCategoryClick}>
+            </CategoryList>
           </div>
           <div className="todo__tasklist">
-            <TaskList></TaskList>
+            <TaskList list={this.state.tasks}></TaskList>
           </div>
         </div>
       </div>
