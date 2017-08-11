@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import CategoryList from './components/CategoryList';
@@ -9,18 +10,18 @@ class App extends Component {
     super(props);
 
     const categories = [{
-        id: 1,
+        id: '1',
         title: 'Category 1',
         children: []
       }, {
-        id: 2,
+        id: '2',
         title: 'Category 2',
         children: [{
-          id: 1,
+          id: '2/1',
           title: 'Category 2 1',
           children: []
         }, {
-          id: 2,
+          id: '2/2',
           title: 'Category 2 2',
           children: []
         }
@@ -30,13 +31,13 @@ class App extends Component {
     const todoes = [{
         id: 1,
         title: 'To-Do Item #1',
-        category: 1,
+        category: '1',
         description: '',
         done: true
       }, {
         id: 2,
         title: 'To-Do Item #2',
-        category: 1,
+        category: '1',
         description: '',
         done: true
       }];
