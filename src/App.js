@@ -4,6 +4,7 @@ import './App.css';
 
 import CategoryList from './components/CategoryList';
 import TaskList from './components/TaskList';
+import { TodoStore } from './Stores/TodoStore';
 
 class App extends Component {
   constructor(props) {
@@ -28,21 +29,24 @@ class App extends Component {
         ]
     }];
 
-    const todoes = [{
-        id: 1,
-        title: 'To-Do Item #1',
-        category: '1',
-        description: '',
-        done: true
-      }, {
-        id: 2,
-        title: 'To-Do Item #2',
-        category: '1',
-        description: '',
-        done: true
-      }];
+    // const todoes = [{
+    //     id: 1,
+    //     title: 'To-Do Item #1',
+    //     category: '1',
+    //     description: '',
+    //     done: true
+    //   }, {
+    //     id: 2,
+    //     title: 'To-Do Item #2',
+    //     category: '1',
+    //     description: '',
+    //     done: true
+    //   }];
+    this.todoStore = new TodoStore();
+    const todoes = this.todoStore.getTodos();
 
     this.state = { categories, todoes, tasks: [] };
+
   }
 
   handleCategoryClick = (categoryId) => {

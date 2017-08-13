@@ -1,15 +1,43 @@
 import { observable, autorun } from 'mobx';
+import uuid from 'uuid';
 
-export default class TodoStore {
-	@observable todoes = [];
+export class TodoStore {
+	todoes = [];
+	isLoading = false;
 
-	addTodo(task, category) {
-		this.todoes.push({
-			id: 1,
-			title: 'To-Do Item #1',
-			category: '1',
-			description: '',
-			done: true
-		});
+	constructor() {
+		this.loadTodos();
+	}
+
+	loadTodos() {
+		// this.isLoading = true;
+		// fetch('./Stores/todos.json').then(response => {
+		// 	console.log(response.json());
+		// 	// response.json()
+		// }); //.then(todoes => {console.log(todoes)});
+		this.createTodo('To-Do Item #1');
+		this.createTodo('To-Do Item #2');
+		this.createTodo('To-Do Item #3');
+	}
+
+	createTodo(title) {
+		this.todoes.push(new Todo(title));
+	}
+
+	getTodos() {
+		return this.todoes;
+	}
+}
+
+export class Todo {
+	id = null;
+	title = '';
+	description = '';
+	completed = false;
+
+	constructor(title, id = uuid.v4()) {
+		this.title = title;
+		this.id = id;
+		this.category = '1';
 	}
 }
