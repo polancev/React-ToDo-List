@@ -35,9 +35,9 @@ export class Todo {
 	description = '';
 	completed = false;
 
-	constructor(title, id = uuid.v4()) {
-		this.title = title;
-		this.id = id;
-		this.category = '1';
+	constructor(title, category, id = uuid.v4()) {
+		this.id			= id;
+		this.title		= title;
+		this.category	= category;
 	}
 }
