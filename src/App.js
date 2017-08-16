@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.css';
 import './App.css';
 
-import CategoryList from './components/CategoryList';
-import TaskList from './components/TaskList';
-import { TodoStore } from './Stores/TodoStore';
-import { CategoryStore } from './Stores/CategoryStore';
+import CategoryList from './components/category-list/CategoryList';
+import TaskList from './components/task-list/TaskList';
+import { TodoStore } from './stores/TodoStore';
+import { CategoryStore } from './stores/CategoryStore';
 
 class App extends Component {
   constructor(props) {
@@ -48,17 +49,18 @@ class App extends Component {
     // const todoes = this.todoStore.getTodos();
     
     this.categoryStore = new CategoryStore();
+    this.todoStore     = new TodoStore();
     
     const categories = this.categoryStore.getCategories();
     const todos = [];
 
-    this.state = { categories, todos };
+    this.state = { categories, todos, selectedCategoty: null };
 
   }
 
   handleCategorySelect = (categoryId) => {
-    const tasks = this.state.todoes.filter((todo) => todo.category === categoryId);
-    this.setState({ tasks });
+    const tasks = this.state.todos.filter((todo) => todo.category === categoryId);
+    this.setState({ tasks, selectedCategoty: categoryId });
   }
 
   handleAddCategory = (title) => {
@@ -77,11 +79,11 @@ class App extends Component {
             <CategoryList 
               list={this.state.categories}
               categorySelect={this.handleCategorySelect}
-              addCategory={this.handleAddCategory} >
-            </CategoryList>
+              addCategory={this.handleAddCategory} />
           </div>
           <div className="todo__tasklist">
-            <TaskList list={this.state.todos}></TaskList>
+            <TaskList 
+              list={this.state.todos} />
           </div>
         </div>
       </div>
