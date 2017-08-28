@@ -8,7 +8,7 @@ export default class CategoryList extends Component {
   }
 
   handleClick = (id) => {
-    this.props.categorySelect(id);
+    this.props.selectCategory(id);
   }
 
   handleAddInputChange = (event) => {
@@ -24,18 +24,30 @@ export default class CategoryList extends Component {
     }
   }
 
+  handleDelete = (id) => {
+    console.log('handle', id);
+    this.props.deleteCategory(id);
+  }
+
   render() {
-    const list = this.props.list.map((category) =>
+    const list = this.props.list.sort((a, b) => {
+      if (a.id > b.id) return -1;
+      if (a.id < b.id) return 1;
+      return 0;
+    }).map((category) =>
       <li className="category_list-item" key={category.id}>
-        <div className="category_list-item__container">
+        {/* <div className="category_list-item__container"> */}
           <button className="category_list-item__down" type="button"><i className="fa fa-angle-down" aria-hidden="true"></i></button>
           <a className="category_list-item__title" onClick={this.handleClick.bind(this, category.id)}>{category.title}</a>
           <button className="category_list-item__edit" type="button"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        </div>
-        <div className="category_list-item__container">
-          <button className="category_list-item__delete" type="button"><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+        {/* </div> */}
+        {/* <div className="category_list-item__container"> */}
+          <button className="category_list-item__delete" type="button"
+            onClick={this.handleDelete.bind(this, category.id)}>
+            <i className="fa fa-trash-o" aria-hidden="true" />
+          </button>
           <button className="category_list-item__add" type="button"><i className="fa fa-plus" aria-hidden="true"></i></button>
-        </div>
+        {/* </div> */}
         {/* {category.children.length > 0 && <CategoryList list={category.children} categoryClick={this.handleClick} />} */}
       </li>
     );

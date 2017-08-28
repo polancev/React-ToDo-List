@@ -38,7 +38,8 @@
 .category_list-item {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	/* justify-content: space-between; */
+	align-items: flex-start;
 	/* align-items: center; */
 	border: 1.5px solid #6A6A6A;
 	border-bottom: none;
@@ -57,11 +58,16 @@
 }
 
 .category_list-item button {
+	margin: 1px 1px 0;
 	border: 1px solid #CCCCCC; 
 	border-radius: 5px;
 	background-color: #fff;
 	cursor: pointer;
-	/* height: 100%; */
+}
+
+.category_list-item button:focus {
+	outline: 1.5px solid #00aff0;
+	-moz-outline-radius: 5px;
 }
 
 .category_list-item button i {
@@ -69,10 +75,14 @@
 }
 
 .category_list-item__title {
-	margin: 0 10px;
+	align-self: center;
+	flex-grow: 2;
+	margin: 2px 10px 0;
+	line-height: 80%;
+	word-break: break-all;
 }
 
 .category_list-item__add {
-	margin-left: 5px;
+	/* margin-left: 5px; */
 } 
 

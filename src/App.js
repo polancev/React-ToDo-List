@@ -11,42 +11,6 @@ import { CategoryStore } from './stores/CategoryStore';
 class App extends Component {
   constructor(props) {
     super(props);
-
-    // const categories = [{
-    //     id: '1',
-    //     title: 'Category 1',
-    //     children: []
-    //   }, {
-    //     id: '2',
-    //     title: 'Category 2',
-    //     children: [{
-    //       id: '2/1',
-    //       title: 'Category 2 1',
-    //       children: []
-    //     }, {
-    //       id: '2/2',
-    //       title: 'Category 2 2',
-    //       children: []
-    //     }
-    //     ]
-    // }];
-
-    // const todoes = [{
-    //     id: 1,
-    //     title: 'To-Do Item #1',
-    //     category: '1',
-    //     description: '',
-    //     done: true
-    //   }, {
-    //     id: 2,
-    //     title: 'To-Do Item #2',
-    //     category: '1',
-    //     description: '',
-    //     done: true
-    //   }];
-
-    // this.todoStore = new TodoStore();
-    // const todoes = this.todoStore.getTodos();
     
     this.categoryStore = new CategoryStore();
     this.todoStore     = new TodoStore();
@@ -58,7 +22,7 @@ class App extends Component {
 
   }
 
-  handleCategorySelect = (categoryId) => {
+  handleSelectCategory = (categoryId) => {
     const tasks = this.state.todos.filter((todo) => todo.category === categoryId);
     this.setState({ tasks, selectedCategoty: categoryId });
   }
@@ -70,6 +34,11 @@ class App extends Component {
     this.setState({ categories, task });
   }
 
+  handleDeleteCategory = (id) => {
+    const categories = this.categoryStore.deleteCategory(id);
+    this.setState({ categories });
+  }
+
   render() {
     return (
       <div className="app">
@@ -78,8 +47,9 @@ class App extends Component {
           <div className="todo__category">
             <CategoryList 
               list={this.state.categories}
-              categorySelect={this.handleCategorySelect}
-              addCategory={this.handleAddCategory} />
+              selectCategory={this.handleSelectCategory}
+              addCategory={this.handleAddCategory} 
+              deleteCategory={this.handleDeleteCategory} />
           </div>
           <div className="todo__tasklist">
             <TaskList 
