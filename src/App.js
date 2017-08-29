@@ -33,6 +33,13 @@ class App extends Component {
     const categories = this.categoryStore.getCategories();
     this.setState({ categories, task });
   }
+  
+  handleAddSubCategory = (id) => {
+    // this.categoryStore.createCategory(title);
+    // const task = [];
+    // const categories = this.categoryStore.getCategories();
+    // this.setState({ categories, task });
+  }
 
   handleDeleteCategory = (id) => {
     const categories = this.categoryStore.deleteCategory(id);
@@ -49,11 +56,11 @@ class App extends Component {
               list={this.state.categories}
               selectCategory={this.handleSelectCategory}
               addCategory={this.handleAddCategory} 
+              addSubCategory={this.handleAddSubCategory}
               deleteCategory={this.handleDeleteCategory} />
           </div>
           <div className="todo__tasklist">
-            <TaskList 
-              list={this.state.todos} />
+            <TaskList list={this.state.todos} />
           </div>
         </div>
       </div>

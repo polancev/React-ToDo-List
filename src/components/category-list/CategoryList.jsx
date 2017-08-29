@@ -1,34 +1,10 @@
 import React, { Component } from 'react';
+import CategoryInput from './CategoryInput';
+import Category from './Category';
+
 import './CategoryList.css';
 
 export default class CategoryList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { newTitle: '' };
-  }
-
-  handleClick = (id) => {
-    this.props.selectCategory(id);
-  }
-
-  handleAddInputChange = (event) => {
-    this.setState({ newTitle: event.target.value });
-  }
-
-  handleAddInputSubmit = (event) => {
-    event.preventDefault();
-    const newTitle = this.state.newTitle;
-    if (newTitle) {
-      this.props.addCategory(newTitle);
-      this.setState({ newTitle: '' })
-    }
-  }
-
-  handleDelete = (id) => {
-    console.log('handle', id);
-    this.props.deleteCategory(id);
-  }
-
   render() {
     const list = this.props.list.sort((a, b) => {
       if (a.id > b.id) return -1;
@@ -36,35 +12,17 @@ export default class CategoryList extends Component {
       return 0;
     }).map((category) =>
       <li className="category_list-item" key={category.id}>
-        {/* <div className="category_list-item__container"> */}
-          <button className="category_list-item__down" type="button"><i className="fa fa-angle-down" aria-hidden="true"></i></button>
-          <a className="category_list-item__title" onClick={this.handleClick.bind(this, category.id)}>{category.title}</a>
-          <button className="category_list-item__edit" type="button"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        {/* </div> */}
-        {/* <div className="category_list-item__container"> */}
-          <button className="category_list-item__delete" type="button"
-            onClick={this.handleDelete.bind(this, category.id)}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
-          </button>
-          <button className="category_list-item__add" type="button"><i className="fa fa-plus" aria-hidden="true"></i></button>
-        {/* </div> */}
+        <Category 
+          title={category.title}
+          onAddClick={this.props.addSubCategory.bind(this, category.id)}
+          onSelect={this.props.selectCategory.bind(this, category.id)} 
+          onDelete={this.props.deleteCategory.bind(this, category.id)} />
         {/* {category.children.length > 0 && <CategoryList list={category.children} categoryClick={this.handleClick} />} */}
       </li>
     );
     return (
       <div>
-        <form 
-          className="category_add-item"
-          onSubmit={this.handleAddInputSubmit} >
-          <input 
-            type="text" 
-            placeholder="Enter category title"
-            onChange={this.handleAddInputChange}
-            value={this.state.newTitle} />
-          <input 
-            type="submit" 
-            value="Add" />
-        </form>
+        <CategoryInput addCategory={this.props.addCategory}  />
         <ul className="category_list">{ list }</ul>
       </div>
     );
