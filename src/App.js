@@ -4,6 +4,7 @@ import 'font-awesome/css/font-awesome.css';
 import './App.css';
 
 import CategoryList from './components/category-list/CategoryList';
+import CategoryInput from './components/category-list/CategoryInput';
 import TaskList from './components/task-list/TaskList';
 import { TodoStore } from './stores/TodoStore';
 import { CategoryStore } from './stores/CategoryStore';
@@ -19,30 +20,43 @@ class App extends Component {
     const todos = [];
 
     this.state = { categories, todos, selectedCategoty: null };
-
   }
 
-  handleSelectCategory = (categoryId) => {
-    const tasks = this.state.todos.filter((todo) => todo.category === categoryId);
-    this.setState({ tasks, selectedCategoty: categoryId });
+  handleSelectCategory = id => {
+    this.setState({ selectedCategory: id});
+    // const todoes = this.todoStore.getTodos(id);
+    // this.setState({ tasks, selectedCategoty: categoryId });
   }
 
-  handleAddCategory = (title) => {
+  handleAddCategory = title => {
     this.categoryStore.createCategory(title);
-    const task = [];
     const categories = this.categoryStore.getCategories();
-    this.setState({ categories, task });
+    this.setState({ categories });
   }
   
-  handleAddSubCategory = (id) => {
-    // this.categoryStore.createCategory(title);
-    // const task = [];
-    // const categories = this.categoryStore.getCategories();
-    // this.setState({ categories, task });
+  handleAddSubCategory = parent => {
+    const title = prompt('Enter category name');
+    if (title) {
+      this.categoryStore.createCategory(title, parent);
+      this.categoryStore.toggleCategory(parent, true);
+      const categories = this.categoryStore.getCategories();
+      this.setState({ categories });
+    }
   }
 
-  handleDeleteCategory = (id) => {
-    const categories = this.categoryStore.deleteCategory(id);
+  handleEditCategory = () => {
+
+  }
+
+  handleDeleteCategory = id => {
+    this.categoryStore.deleteCategory(id);
+    const categories = this.categoryStore.getCategories();
+    this.setState({ categories });
+  }
+
+  handleOnToggle = id => {
+    this.categoryStore.toggleCategory(id);
+    const categories = this.categoryStore.getCategories();
     this.setState({ categories });
   }
 
@@ -52,12 +66,16 @@ class App extends Component {
         <h2>To-Do List</h2>
         <div className="todo">
           <div className="todo__category">
+            <CategoryInput addCategory={this.handleAddCategory}  />
             <CategoryList 
               list={this.state.categories}
+              parent={null}
+              selectedCategory={this.state.selectedCategory}
+              onToggle={this.handleOnToggle}
               selectCategory={this.handleSelectCategory}
-              addCategory={this.handleAddCategory} 
               addSubCategory={this.handleAddSubCategory}
-              deleteCategory={this.handleDeleteCategory} />
+              deleteCategory={this.handleDeleteCategory} 
+              editCategory={this.handleEditCategory} />
           </div>
           <div className="todo__tasklist">
             <TaskList list={this.state.todos} />

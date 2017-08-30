@@ -8,7 +8,7 @@
 
 .category_list-item {
 	border: 1.5px solid #6A6A6A;
-	border-bottom: none;
+	/* border-bottom: none; */
 }
 
 .category_list-item:first-child {

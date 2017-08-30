@@ -1,5 +1,5 @@
 // import { observable, autorun } from 'mobx';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 export class CategoryStore {
 	categories;
@@ -16,28 +16,34 @@ export class CategoryStore {
 		return this.categories;
 	}
 
-	createCategory(title, parent = null) {
+	createCategory(title, parent=null) {
 		this.categories.push(new Category(title, parent));
 	}
 
 	deleteCategory(id) {
-		const index = this.categories.findIndex((value, index, arr) => value.id === id);
+		const index = this.findCategoryIndex(id);
 		if (index !== -1) {
 			this.categories.splice(index, 1);
 		}
-		return this.categories;
+	}
+
+	toggleCategory(id, opened) {
+		const index = this.findCategoryIndex(id);
+		if (index !== -1) {
+			this.categories[index].opened = opened? opened : !this.categories[index].opened;
+		}
+	}
+
+	findCategoryIndex(id) {
+		return this.categories.findIndex(value => value.id === id);
 	}
 }
 
 export class Category {
-	id = null;
-	title = '';
-	parent;
-
-	constructor(title, parent) {
-		// this.id = uuid.v4();
+	constructor(title, parent=null) {
 		this.id = Date.now();
 		this.title = title;
 		this.parent = parent;
+		this.opened = false;
 	}
 }
