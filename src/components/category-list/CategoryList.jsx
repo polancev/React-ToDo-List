@@ -5,8 +5,7 @@ import './CategoryList.css';
 
 export default class CategoryList extends Component {
   render() {
-    const seletedCategory = this.props.selectedCategory;
-    console.log(seletedCategory);
+    const selectedCategory = this.props.selectedCategory;
     const parent = this.props.parent;
     const list = this.props.list
       .filter(category => category.parent === parent)
@@ -22,7 +21,7 @@ export default class CategoryList extends Component {
             <Category 
               title={category.title}
               hasChildren={hasChildren}
-              selected={seletedCategory === category.id}
+              selected={selectedCategory === category.id}
               onToggle={this.props.onToggle.bind(this, category.id)}
               onAddSub={this.props.addSubCategory.bind(this, category.id)}
               onSelect={this.props.selectCategory.bind(this, category.id)}
@@ -33,7 +32,7 @@ export default class CategoryList extends Component {
             <CategoryList
               list={this.props.list}
               parent={category.id}
-              seletedCategory={seletedCategory}
+              selectedCategory={selectedCategory}
               onToggle={this.props.onToggle}
               selectCategory={this.props.selectCategory}
               addSubCategory={this.props.addSubCategory}
