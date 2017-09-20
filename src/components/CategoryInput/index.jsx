@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CategoryInput.css';
+import './index.css';
 
 export default class CategoryInput extends Component {
   constructor(props) {

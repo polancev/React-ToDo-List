@@ -5,17 +5,6 @@
 	padding: 2px 5px;
 }
 
-.category button {
-	margin: 1px 1px 0;
-	background-color: #fff;
-	cursor: pointer;
-}
-
-.category button:focus {
-	outline: 1.5px solid #00aff0;
-	-moz-outline-radius: 5px;
-}
-
 .category__down {
 	border: none;
 }
@@ -23,7 +12,7 @@
 .category__edit,
 .category__delete,
 .category__add {
-	border: 1px solid #CCCCCC; 
+	border: 1px solid #CCCCCC;
 	border-radius: 5px;
 }
 
@@ -40,5 +29,5 @@
 }
 
 .selected {
-	background-color: #42BEEC;
+	background-color: #c6ebf9;
 }
