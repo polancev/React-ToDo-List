@@ -1,8 +1,8 @@
 .todo-list__item {
-  border: 1px solid #6A6A6A;
-  /*border-bottom: none;*/ 
+  border: 1.5px solid #6A6A6A;
+  border-bottom: none;
 }
 
 .todo-list__item:last-child {
-  border-bottom: #6A6A6A;
+  border-bottom: 1.5px solid #6A6A6A;
 }

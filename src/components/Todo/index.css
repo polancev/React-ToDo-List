@@ -1,6 +1,7 @@
 .todo {
-  /*display: flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 2px 5px;*/
+  padding: 5px 5px;
+  color: #6A6A6A;
 }

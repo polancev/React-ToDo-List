@@ -34,6 +34,8 @@ class App extends Component {
       title: 'To-Do Item #1'
     }, {
       title: 'To-Do Item #2'
+    }, {
+      title: 'To-Do Item #3'
     }];
     this.setState({ todos, selectedCategoty: id });
   }

@@ -3,8 +3,12 @@ import Category from '../Category/index';
 import './index.css';
 
 const sortFunction = (a, b) => {
-  if (a.id > b.id) return -1;
-  if (a.id < b.id) return 1;
+  if (a.id > b.id) {
+    return -1;
+  }
+  if (a.id < b.id) {
+    return 1;
+  }
   return 0;
 };
 
@@ -25,7 +29,7 @@ const CategoryList = ({
         .map(({ id, title, opened }) => {
           const hasChildren = list.findIndex(value => value.parent && value.parent === id) > -1;
           return (
-            <div key={id}>
+            <div key={id} >
               <li className="category_list-item">
                 <Category
                   title={title}

@@ -3,17 +3,21 @@
 }
 
 .category_list-item {
-	border: 1.5px solid #6A6A6A;
-	/* border-bottom: none; */
+	/*border: 1px solid #ddd;*/
+	/*margin-bottom: -1px;*/
+	/*padding: 12px 45px;
+    margin-bottom: 6px;
+     border-top: 2px solid red;
+    border-bottom: 1px solid gray;*/
 }
 
-.category_list-item:first-child {
+/*.category_list-item:first-child {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-}
+}*/
 
-.category_list-item:last-child {
+/*.category_list-item:last-child {
 	border-bottom: 1.5px solid #6A6A6A;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-}
+}*/

@@ -1,0 +1,25 @@
+button {
+	margin: 1px 1px 0;
+  background-color: rgba(0,0,0,0);
+	cursor: pointer;
+}
+
+button:focus {
+	outline: 1.5px solid #00aff0;
+	-moz-outline-radius: 5px;
+}
+
+.category__down {
+	border: none;
+}
+
+.category__edit,
+.category__delete,
+.category__add {
+	border: 1px solid #CCCCCC;
+	border-radius: 5px;
+}
+
+button i {
+	margin: 5px 0;
+}

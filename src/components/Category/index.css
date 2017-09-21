@@ -5,21 +5,6 @@
 	padding: 2px 5px;
 }
 
-.category__down {
-	border: none;
-}
-
-.category__edit,
-.category__delete,
-.category__add {
-	border: 1px solid #CCCCCC;
-	border-radius: 5px;
-}
-
-.category button i {
-	margin: 5px 0;
-}
-
 .category__title {
 	align-self: center;
 	flex-grow: 2;
