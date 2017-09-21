@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 const AddButton = ({onClick}) => (
-  <Button className="category__add" onClick={onClick}>
-    <i className="fa fa-plus" aria-hidden="true"></i>
+  <Button className="bordered" onClick={onClick}>
+    <i className="fa fa-plus button-icon" aria-hidden="true"></i>
   </Button>
 );
 

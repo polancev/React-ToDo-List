@@ -16,8 +16,8 @@ const Category = ({
   ? "category selected"
   : "category"}>
   {hasChildren && (opened
-    ? <AngleDownButton onClick={onToggle}/>
-    : <AngleUpButton onClick={onToggle}/>)
+    ? <AngleUpButton onClick={onToggle}/>
+    : <AngleDownButton onClick={onToggle}/>)
 }
   <a className="category__title" onClick={onCategorySelect}>{title}</a>
   <EditButton onClick={onEdit}/>

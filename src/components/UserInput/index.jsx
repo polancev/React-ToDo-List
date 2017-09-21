@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './index.css';
 
-export default class CategoryInput extends Component {
+export default class UserInput extends Component {
   constructor(props) {
     super(props);
     this.state = { title: '' };
   }
 
-  handleAddInputChange = (event) => {
+  inputChange = (event) => {
     this.setState({ title: event.target.value });
   }
 
-  handleAddInputSubmit = (event) => {
+  inputSubmit = (event) => {
     event.preventDefault();
     const title = this.state.title;
     if (title) {
@@ -21,18 +21,18 @@ export default class CategoryInput extends Component {
   }
 
   render() {
+    const {placeholder, value} = this.props;
+    const {title} = this.state;
     return (
       <form
-        className="category_add-item"
-        onSubmit={this.handleAddInputSubmit} >
+        className="user-input"
+        onSubmit={this.inputSubmit} >
         <input
           type="text"
-          placeholder="Enter category title"
-          onChange={this.handleAddInputChange}
-          value={this.state.title} />
-        <input
-          type="submit"
-          value="Add" />
+          placeholder={placeholder}
+          onChange={this.inputChange}
+          value={title} />
+        <input type="submit" value={value}/>
       </form>
     );
   }

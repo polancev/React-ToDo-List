@@ -1,0 +1,42 @@
+.user-input {
+	display: flex;
+	flex-direction: row;
+	/*max-width: 400px;
+	min-width: 200px;*/
+	width: 300px;
+}
+
+.user-input input[type="text"] {
+	width: 75%;
+	font-family: "TomsHandwritten";
+	font-size: 1em;
+	color: #6A6A6A;
+	padding-left: 5px;
+	border: 1px solid #6A6A6A;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.user-input input[type="submit"] {
+	width: 25%;
+	font-family: "TomsHandwritten";
+	font-size: 1em;
+	color: #6A6A6A;
+	background-color: #fff;
+	border: 1px solid #6A6A6A;
+	border-left: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+@media only screen and (min-width: 600px) {
+	.user-input { width: 200px; }
+}
+
+@media only screen and (min-width: 768px) {
+	.user-input { width: 280px; }
+}
+
+@media only screen and (min-width: 980px) {
+	.user-input { width: 370px; }
+}

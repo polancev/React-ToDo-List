@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-const AngleUpButton = ({onClick}) => (
+
+const CheckedBox = ({onClick}) => (
   <Button className="borderless" onClick={onClick}>
-    <i className="fa fa-angle-up button-icon" aria-hidden="true"/>
+    <i className="fa fa-check-square-o button-icon" aria-hidden="true"/>
   </Button>
 );
 
-AngleUpButton.propTypes = {
+CheckedBox.propTypes = {
   onClick: PropTypes.func
 };
 
-export default AngleUpButton;
+export default CheckedBox;

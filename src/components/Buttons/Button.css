@@ -5,21 +5,19 @@ button {
 }
 
 button:focus {
-	outline: 1.5px solid #00aff0;
+	outline: 1px solid #00aff0;
 	-moz-outline-radius: 5px;
 }
 
-.category__down {
+.borderless {
 	border: none;
 }
 
-.category__edit,
-.category__delete,
-.category__add {
+.bordered {
 	border: 1px solid #CCCCCC;
 	border-radius: 5px;
 }
 
-button i {
-	margin: 5px 0;
+.button-icon {
+	margin: 5px 4px;
 }

@@ -63,6 +63,7 @@ export class CategoryStore {
 export class Category {
   constructor(title, parent = null, id = Date.now()) {
     // this.id = Date.now();
+    if (!id) id = Date.now();
 		this.id = id;
     this.title = title;
     this.parent = parent;

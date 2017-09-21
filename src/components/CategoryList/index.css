@@ -2,6 +2,10 @@
 	cursor: pointer;
 }
 
+.embedded-list {
+	margin-left: 30px;
+}
+
 .category_list-item {
 	/*border: 1px solid #ddd;*/
 	/*margin-bottom: -1px;*/

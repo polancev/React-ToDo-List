@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 const EditButton = ({onClick}) => (
-  <Button className="category__edit" onClick={onClick}>
-    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <Button className="bordered" onClick={onClick}>
+    <i className="fa fa-pencil-square-o button-icon" aria-hidden="true"></i>
   </Button>
 );
 

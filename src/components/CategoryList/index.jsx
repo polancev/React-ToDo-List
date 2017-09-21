@@ -29,31 +29,31 @@ const CategoryList = ({
         .map(({ id, title, opened }) => {
           const hasChildren = list.findIndex(value => value.parent && value.parent === id) > -1;
           return (
-            <div key={id} >
-              <li className="category_list-item">
-                <Category
-                  title={title}
-                  hasChildren={hasChildren}
-                  selected={selectedCategory === id}
-                  opened={opened}
-                  onToggle={() => onToggle(id)}
-                  onAddSub={() => addSubCategory(null, id)}
-                  onDelete={() => deleteCategory(id)}
-                  onEdit={() => editCategory(id, title)}
-                  onCategorySelect={() => selectCategory(id)} />
-              </li>
-              { opened &&
-                <CategoryList
-                  list={list}
-                  parent={id}
-                  onToggle={onToggle}
-                  selectedCategory={selectedCategory}
-                  selectCategory={selectCategory}
-                  addSubCategory={addSubCategory}
-                  deleteCategory={deleteCategory}
-                  editCategory={editCategory} />
-              }
-            </div>
+            <li key={id} className="category_list-item">
+              <Category
+                title={title}
+                hasChildren={hasChildren}
+                selected={selectedCategory === id}
+                opened={opened}
+                onToggle={() => onToggle(id)}
+                onAddSub={() => addSubCategory(null, id)}
+                onDelete={() => deleteCategory(id)}
+                onEdit={() => editCategory(id, title)}
+                onCategorySelect={() => selectCategory(id)} />
+                { opened &&
+                  <div className="embedded-list">
+                    <CategoryList
+                      list={list}
+                      parent={id}
+                      onToggle={onToggle}
+                      selectedCategory={selectedCategory}
+                      selectCategory={selectCategory}
+                      addSubCategory={addSubCategory}
+                      deleteCategory={deleteCategory}
+                      editCategory={editCategory} />
+                  </div>
+                }
+            </li>
         )})
       }
     </ul>

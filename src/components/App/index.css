@@ -10,13 +10,15 @@
 
 * {
 	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .app {
   font-family: "TomsHandwritten";
   font-size: 1.5em;
   color: #00aff0;
-  margin: 0 2%;
+  margin: 2%;
 }
 
 .main {
@@ -25,9 +27,24 @@
 }
 
 .categories {
-  width: 30%;
+	display: flex;
+	flex-direction: column;
+  width: 40%;
+}
+
+.category-input {
+	align-self: flex-start;
+	margin-bottom: 20px;
 }
 
 .todos {
-  width: 70%;
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+  width: 60%;
+}
+
+.todo-input {
+	align-self: flex-end;
+	margin-bottom: 20px;
 }

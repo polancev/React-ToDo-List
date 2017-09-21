@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.css';
-import './App.css';
+import './index.css';
 
-import CategoryInput from '../CategoryInput/index';
+import UserInput from '../UserInput/index';
 import CategoryList from '../CategoryList/index';
 import TodoList from '../TodoList/index';
 
@@ -27,14 +27,17 @@ class App extends Component {
     };
   }
 
-  handleSelectCategory = id => {
+  selectCategory = id => {
     // this.setState({ selectedCategory: id });
     // const todoes = this.todoStore.getTodos(id);
     const todos = [{
+      id: 1,
       title: 'To-Do Item #1'
     }, {
+      id: 2,
       title: 'To-Do Item #2'
     }, {
+      id: 3,
       title: 'To-Do Item #3'
     }];
     this.setState({ todos, selectedCategoty: id });
@@ -50,7 +53,7 @@ class App extends Component {
     this.setState({ categories: this.categoryStore.getCategories() });
   }
 
-  handleEditCategory = (id, title) => {
+  editCategory = (id, title) => {
     const newTitle = prompt('Enter category name', title);
     if (newTitle) {
       this.categoryStore.updateCategory(id, newTitle);
@@ -58,16 +61,28 @@ class App extends Component {
     }
   }
 
-  handleDeleteCategory = id => {
+  deleteCategory = id => {
     this.categoryStore.deleteCategory(id);
     const categories = this.categoryStore.getCategories();
     this.setState({categories});
   }
 
-  handleOnToggle = id => {
+  onToggle = id => {
     this.categoryStore.toggleCategory(id);
     const categories = this.categoryStore.getCategories();
     this.setState({categories});
+  }
+
+  addTodo = () => {
+
+  }
+
+  editTodo = () => {
+
+  }
+
+  checkTodo = (id) => {
+    console.log('check');
   }
 
   render() {
@@ -76,21 +91,33 @@ class App extends Component {
         <h2>To-Do List</h2>
         <div className="main">
           <div className="categories">
-            <CategoryInput
-              addCategory={this.addCategory} />
+            <div className="category-input">
+              <UserInput
+                value="Add"
+                placeholder="Enter category title"
+                addCategory={this.addCategory} />
+            </div>
             <CategoryList
               list={this.state.categories}
               parent={null}
               selectedCategory={this.state.selectedCategory}
-              onToggle={this.handleOnToggle}
-              selectCategory={this.handleSelectCategory}
+              onToggle={this.onToggle}
+              selectCategory={this.selectCategory}
               addSubCategory={this.addCategory}
-              deleteCategory={this.handleDeleteCategory}
-              editCategory={this.handleEditCategory} />
+              deleteCategory={this.deleteCategory}
+              editCategory={this.editCategory} />
           </div>
           <div className="todos">
+            <div className="todo-input">
+              <UserInput
+                className="todo-input"
+                value="Add"
+                placeholder="Enter todo title"
+                addCategory={this.addCategory} />
+              </div>
             <TodoList
-              list={this.state.todos} />
+              list={this.state.todos}
+              onCheck={this.checkTodo} />
           </div>
         </div>
       </div>
