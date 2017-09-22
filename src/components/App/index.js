@@ -17,30 +17,32 @@ class App extends Component {
     this.categoryStore = new CategoryStore();
     this.todoStore = new TodoStore();
 
+    // tempary
+    this.categoryStore.createCategory('Categoty 1', null);
+    const id2 = this.categoryStore.createCategory('Categoty 2', null);
+    const id3 = this.categoryStore.createCategory('Categoty 3', null);
+    this.categoryStore.createCategory('Categoty 3 1', id3);
+    this.categoryStore.createCategory('Categoty 3 2', id3);
+    this.categoryStore.toggleCategory(id3, true);
+    this.todoStore.createTodo('To-Do Item #1', id2);
+    this.todoStore.createTodo('To-Do Item #2', id2);
+    this.todoStore.createTodo('To-Do Item #3', id2);
+    // -------
+
     const categories = this.categoryStore.getCategories();
-    const todos = [];
+    // const todos = [];
+    const todos = this.todoStore.getTodos(id2);
 
     this.state = {
       categories,
       todos,
-      selectedCategoty: null
+      selectedCategory: id2 // null
     };
   }
 
   selectCategory = id => {
-    // this.setState({ selectedCategory: id });
-    // const todoes = this.todoStore.getTodos(id);
-    const todos = [{
-      id: 1,
-      title: 'To-Do Item #1'
-    }, {
-      id: 2,
-      title: 'To-Do Item #2'
-    }, {
-      id: 3,
-      title: 'To-Do Item #3'
-    }];
-    this.setState({ todos, selectedCategoty: id });
+    const todos = this.todoStore.getTodos(id);
+    this.setState({ todos, selectedCategory: id });
   }
 
   addCategory = (title, parent) => {
@@ -82,7 +84,10 @@ class App extends Component {
   }
 
   checkTodo = (id) => {
-    console.log('check');
+    this.todoStore.checkTodo(id);
+    const { selectedCategory } = this.state;
+    const todos = this.todoStore.getTodos(selectedCategory);
+    this.setState({ todos });
   }
 
   render() {
