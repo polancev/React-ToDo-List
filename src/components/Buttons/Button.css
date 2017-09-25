@@ -21,3 +21,7 @@ button:focus {
 .button-icon {
 	margin: 5px 4px;
 }
+
+.unchecked-box {
+	margin-right: 6px;
+}

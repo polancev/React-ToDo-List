@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from '../Todo/index';
 import './index.css';
 
-const TodoList = ({list, onCheck}) =>
+const TodoList = ({list, onCheck, onEdit}) =>
 <div>
   <ul className="todo-list">
     { list.map(({id, title, checked}) =>
@@ -10,7 +10,8 @@ const TodoList = ({list, onCheck}) =>
       	<Todo
           title={title}
           checked={checked}
-          onClick={() => onCheck(id)} />
+          onCheck={() => onCheck(id)}
+          onEdit={() => onEdit(id)} />
     	</li>)
 		}
   </ul>

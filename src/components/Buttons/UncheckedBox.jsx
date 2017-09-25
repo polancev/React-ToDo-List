@@ -4,7 +4,7 @@ import Button from './Button';
 
 const UnCheckedBox = ({onClick}) => (
   <Button className="borderless" onClick={onClick}>
-    <i className="fa fa-square-o button-icon" aria-hidden="true"/>
+    <i className="fa fa-square-o button-icon unchecked-box" aria-hidden="true"/>
   </Button>
 );
 

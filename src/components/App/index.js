@@ -17,7 +17,7 @@ class App extends Component {
     this.categoryStore = new CategoryStore();
     this.todoStore = new TodoStore();
 
-    // tempary
+    // !tempary
     this.categoryStore.createCategory('Categoty 1', null);
     const id2 = this.categoryStore.createCategory('Categoty 2', null);
     const id3 = this.categoryStore.createCategory('Categoty 3', null);
@@ -30,13 +30,12 @@ class App extends Component {
     // -------
 
     const categories = this.categoryStore.getCategories();
-    // const todos = [];
-    const todos = this.todoStore.getTodos(id2);
+    const todos = this.todoStore.getTodos(id2); // !tempary const todos = [];
 
     this.state = {
       categories,
       todos,
-      selectedCategory: id2 // null
+      selectedCategory: id2 // !tempary null
     };
   }
 
@@ -76,11 +75,11 @@ class App extends Component {
   }
 
   addTodo = () => {
-
+    console.log('addTodo');
   }
 
-  editTodo = () => {
-
+  editTodo = (id) => {
+    console.log('editTodo');
   }
 
   checkTodo = (id) => {
@@ -122,7 +121,8 @@ class App extends Component {
               </div>
             <TodoList
               list={this.state.todos}
-              onCheck={this.checkTodo} />
+              onCheck={this.checkTodo}
+              onEdit={this.editTodo} />
           </div>
         </div>
       </div>

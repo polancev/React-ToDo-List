@@ -1,14 +1,17 @@
 import React from 'react';
-import { CheckedBox, UncheckedBox } from '../Buttons/index';
+import { CheckedBox, EditButton, UncheckedBox } from '../Buttons/index';
 import './index.css';
 
-const Todo = ({ title, checked, onClick }) =>
+const Todo = ({ title, checked, onCheck, onEdit }) =>
 <div className="todo">
-  {!checked
-    ? <CheckedBox onClick={onClick} />
-    : <UncheckedBox onClick={onClick} />
-  }
-  {title}
+  <div className="title-wrapper">
+    {!checked
+      ? <CheckedBox onClick={onCheck} />
+      : <UncheckedBox onClick={onCheck} />
+    }
+    <span className="title">{title}</span>
+  </div>
+  <EditButton onClick={onEdit} />
 </div>
 
 export default Todo;
