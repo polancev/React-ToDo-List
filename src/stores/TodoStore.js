@@ -41,3 +41,5 @@ export class Todo {
     this.checked = false;
   }
 }
+
+export const todoStoreInstance = new TodoStore();

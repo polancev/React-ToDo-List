@@ -58,3 +58,5 @@ export class Category {
     this.opened = false;
   }
 }
+
+export const categoryStoreInstance = new CategoryStore();
