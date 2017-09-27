@@ -31,7 +31,9 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={HomeView} />
-            <Route path="/todos/:category" component={ListView} />
+            <Route path="/todos/:category" render={(props) => {
+              <ListView {...props}/>
+            }} />
             <Route path="/edit/:todo" component={EditView} />
           </Switch>
         </Router>

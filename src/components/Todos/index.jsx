@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import UserInput from '../UserInput/index';
 import TodoList from '../TodoList/index';
 import { todoStoreInstance } from '../../stores/TodoStore';
+import './index.css';
 
 export default class Todos extends Component {
 
   constructor(props) {
     super(props);
 
-    const { selectedCategory } = props.match;
+    const { selectedCategory } = props;
     const todos = todoStoreInstance.getTodos(selectedCategory);
+    console.log(todos)
 
     this.state = {
       todos,
