@@ -1,0 +1,9 @@
+.categories {
+	display: flex;
+	flex-direction: column;
+}
+
+.category-input {
+	align-self: flex-start;
+	margin-bottom: 20px;
+}

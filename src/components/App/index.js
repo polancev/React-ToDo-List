@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
 
+import HomeView from '../HomeView/index';
 import ListView from '../ListView/index';
+import EditView from '../EditView/index';
 
 import { todoStoreInstance } from '../../stores/TodoStore';
 import { categoryStoreInstance } from '../../stores/CategoryStore';
 
 class App extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
     // !tempary
     categoryStoreInstance.createCategory('Categoty 1', null);
     const id2 = categoryStoreInstance.createCategory('Categoty 2', null);
@@ -24,9 +27,15 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
-        <Route path='/' component={ListView} />
-      </Router>
+      <div className="app">
+        <Router>
+          <Switch>
+            <Route path="/" exact component={HomeView} />
+            <Route path="/todos/:category" component={ListView} />
+            <Route path="/edit/:todo" component={EditView} />
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { AddButton, AngleDownButton, AngleUpButton, DeleteButton, EditButton } from '../Buttons/index';
 import './index.css';
-import {AddButton, AngleDownButton, AngleUpButton, DeleteButton, EditButton} from '../Buttons/index';
 
 const Category = ({
-  title,
-  opened,
+  category,
   selected,
   hasChildren,
   onToggle,
@@ -12,17 +12,25 @@ const Category = ({
   onEdit,
   onDelete,
   onAddSub
-}) => <div className={selected
-  ? "category selected"
-  : "category"}>
-  {hasChildren && (opened
-    ? <AngleUpButton onClick={onToggle}/>
-    : <AngleDownButton onClick={onToggle}/>)
+}) => {
+  const { id, title, opened } = category;
+  return (
+    <div className={selected
+      ? "category selected"
+      : "category"}>
+      {hasChildren && (opened
+        ? <AngleUpButton onClick={onToggle}/>
+        : <AngleDownButton onClick={onToggle}/>)
+      }
+      <Link to={`/todos/${id}`} className="category__title">
+        {/* <a  onClick={onCategorySelect}>{title}</a> */}
+        {title}
+      </Link>
+      <EditButton onClick={onEdit}/>
+      <DeleteButton onClick={onDelete}/>
+      <AddButton onClick={onAddSub}/>
+    </div>
+  );
 }
-  <a className="category__title" onClick={onCategorySelect}>{title}</a>
-  <EditButton onClick={onEdit}/>
-  <DeleteButton onClick={onDelete}/>
-  <AddButton onClick={onAddSub}/>
-</div>
 
 export default Category;
