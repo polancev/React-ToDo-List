@@ -13,11 +13,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     // !tempary
-    categoryStoreInstance.createCategory('Categoty 1', null);
-    const id2 = categoryStoreInstance.createCategory('Categoty 2', null);
-    const id3 = categoryStoreInstance.createCategory('Categoty 3', null);
-    categoryStoreInstance.createCategory('Categoty 3 1', id3);
-    categoryStoreInstance.createCategory('Categoty 3 2', id3);
+    categoryStoreInstance.createCategory('Category 1', null);
+    const id2 = categoryStoreInstance.createCategory('Category 2', null);
+    const id3 = categoryStoreInstance.createCategory('Category 3', null);
+    categoryStoreInstance.createCategory('Category 3 1', id3);
+    categoryStoreInstance.createCategory('Category 3 2', id3);
     categoryStoreInstance.toggleCategory(id3, true);
 
     todoStoreInstance.createTodo('To-Do Item #1', id2);
@@ -31,10 +31,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact component={HomeView} />
-            <Route path="/todos/:category" render={(props) => {
-              <ListView {...props}/>
+            <Route path="/todos/:category" render={({match}) => {
+              return <ListView match={match}/>
             }} />
-            <Route path="/edit/:todo" component={EditView} />
+            {/*<Route path="/edit/:todo" component={EditView} />*/}
           </Switch>
         </Router>
       </div>

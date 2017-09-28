@@ -9,14 +9,13 @@ export default class Todos extends Component {
   constructor(props) {
     super(props);
 
-    const { selectedCategory } = props;
-    const todos = todoStoreInstance.getTodos(selectedCategory);
-    console.log(todos)
-
-    this.state = {
-      todos,
-      selectedCategory
-    };
+    // const { selectedCategory } = props;
+    // const todos = todoStoreInstance.getTodos(selectedCategory);
+    //
+    // this.state = {
+    //   todos,
+    //   selectedCategory
+    // };
   }
 
   addTodo = () => {
@@ -29,12 +28,15 @@ export default class Todos extends Component {
 
   checkTodo = (id) => {
     todoStoreInstance.checkTodo(id);
-    const { selectedCategory } = this.state;
+    const { selectedCategory } = this.props;
     const todos = todoStoreInstance.getTodos(selectedCategory);
     this.setState({ todos });
   }
 
   render() {
+
+      const { selectedCategory } = this.props;
+      const todos = todoStoreInstance.getTodos(selectedCategory);
     return (
       <div className="todos">
         <div className="todo-input">
@@ -45,7 +47,7 @@ export default class Todos extends Component {
             addCategory={this.addCategory} />
           </div>
         <TodoList
-          list={this.state.todos}
+          list={todos}
           onCheck={this.checkTodo}
           onEdit={this.editTodo} />
       </div>

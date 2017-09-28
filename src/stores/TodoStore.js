@@ -15,7 +15,6 @@ export class TodoStore {
 	}
 
 	getTodos(id) {
-		console.log(this.todos)
 		return this.todos.filter(todo => todo.category === id);
 	}
 
