@@ -15,7 +15,8 @@ export class CategoryStore {
   }
 
   createCategory(title, parent = null) {
-    const newCategory = new Category(title, parent);
+    const id = String(this.categories.length); // tempary
+    const newCategory = new Category(title, parent, id);
     this.categories.push(newCategory);
     return newCategory.id;
   }

@@ -1,51 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
+import Header from '../Header/index';
 import Todos from '../Todos/index';
 import Categories from '../Categories/index';
+
 import './index.css';
 
-// const ListView = ({ match }) => {
-//     const { category } = match.params;
-//     return (
-//         <div className="app">
-//             <Link to={"/"}>
-//                 <h2>To-Do List</h2>
-//             </Link>
-//             <div className="main">
-//                 <div className="left-panel">
-//                     <Categories selectedCategory={category} />
-//                 </div>
-//                 <div className="right-panel">
-//                     <Todos selectedCategory={category} />
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-//
-//
-// export default ListView;
+const ListView = ({ match }) => {
+  const { categoryId } = match.params;
 
-
-export default class ListView extends Component {
-  componentWillUpdate() {
-
-  }
-
-  render() {
-    const { category } = this.props.match.params;
-      return (
-      <div className="app">
-        <h2>To-Do List</h2>
-        <div className="main">
-          <div className="left-panel">
-            <Categories selectedCategory={category} />
-          </div>
-          <div className="right-panel">
-            <Todos selectedCategory={category} />
-          </div>
+  return (
+    <div className="app">
+      <Link to="/">
+        <Header title="To-Do List" />
+      </Link>
+      <div className="container">
+        <div className="left-panel">
+          <Categories selectedCategory={categoryId} />
+        </div>
+        <div className="right-panel">
+          <Todos selectedCategory={categoryId} />
         </div>
       </div>
-    )
-  }
+    </div>
+  );
 }
+
+export default ListView;

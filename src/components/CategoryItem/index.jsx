@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { AddButton, AngleDownButton, AngleUpButton, DeleteButton, EditButton } from '../Buttons/index';
 import './index.css';
 
-const Category = ({
+const CategoryItem = ({
   category,
   selected,
   hasChildren,
   onToggle,
-  onCategorySelect,
   onEdit,
   onDelete,
   onAddSub
@@ -23,7 +22,6 @@ const Category = ({
         : <AngleDownButton onClick={onToggle}/>)
       }
       <Link to={`/todos/${id}`} className="category__title">
-        {/* <a  onClick={onCategorySelect}>{title}</a> */}
         {title}
       </Link>
       <EditButton onClick={onEdit}/>
@@ -33,4 +31,6 @@ const Category = ({
   );
 }
 
-export default Category;
+export {
+  CategoryItem
+};

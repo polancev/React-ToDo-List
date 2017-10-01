@@ -4,9 +4,10 @@ import CategoryList from '../CategoryList/index';
 import { categoryStoreInstance } from '../../stores/CategoryStore';
 import './index.css';
 
-export default class Category extends Component {
+export default class Categories extends Component {
   constructor(props) {
     super(props);
+
     const categories = categoryStoreInstance.getCategories();
     this.state = { categories };
   }
@@ -17,6 +18,7 @@ export default class Category extends Component {
   }
 
   addCategory = (title, parent) => {
+    console.log('addCategory', this);
     if (parent) {
       title = prompt('Enter category name');
       if (!title) { return; }
@@ -60,6 +62,7 @@ export default class Category extends Component {
           list={categories}
           parent={null}
           selectedCategory={selectedCategory}
+          CategoryItem={this.props.CategoryItem}
           onToggle={this.toggleCategory}
           selectCategory={this.selectCategory}
           addSubCategory={this.addCategory}

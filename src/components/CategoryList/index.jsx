@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from '../Category/index';
+import { CategoryItem } from '../CategoryItem/index';
 import './index.css';
 
 const sortFunction = (a, b) => {
@@ -31,7 +31,7 @@ const CategoryList = ({
             const hasChildren = list.findIndex(value => value.parent && value.parent === id) > -1;
             return (
               <li key={id} className="category_list-item">
-                <Category
+                <CategoryItem
                   category={category}
                   hasChildren={hasChildren}
                   selected={selectedCategory === id}

@@ -1,19 +1,21 @@
 import React from 'react';
-import Todo from '../Todo/index';
+import TodoItem from '../TodoItem/index';
 import './index.css';
 
 const TodoList = ({list, onCheck, onEdit}) =>
 <div>
   <ul className="todo-list">
-    { list.map(({id, title, checked}) =>
-			<li key={id} className="todo-list__item">
-      	<Todo
-          title={title}
-          checked={checked}
-          onCheck={() => onCheck(id)}
-          onEdit={() => onEdit(id)} />
-    	</li>)
-		}
+    { list.map(todo => {
+      const { id } = todo;
+      return (
+        <li key={id} className="todo-list__item">
+          <TodoItem
+            todo={todo}
+            onCheck={() => onCheck(id)}
+            onEdit={() => onEdit(id)} />
+        </li>
+      );
+    })}
   </ul>
 </div>
 

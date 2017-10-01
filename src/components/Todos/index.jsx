@@ -1,57 +1,52 @@
 import React, { Component } from 'react';
+
 import UserInput from '../UserInput/index';
 import TodoList from '../TodoList/index';
+
 import { todoStoreInstance } from '../../stores/TodoStore';
+
 import './index.css';
 
 export default class Todos extends Component {
-
   constructor(props) {
     super(props);
 
-    // const { selectedCategory } = props;
-    // const todos = todoStoreInstance.getTodos(selectedCategory);
-    //
-    // this.state = {
-    //   todos,
-    //   selectedCategory
-    // };
+    this.state = { todos: this.getTodos(props) };
   }
 
-  addTodo = () => {
-    console.log('addTodo');
+  componentWillReceiveProps(nextProps) {
+    this.setState({ todos: this.getTodos(nextProps) });
   }
 
-  editTodo = (id) => {
-    console.log('editTodo');
+  addTodo = (title) => {
+    todoStoreInstance.addTodo(title);
+    this.setState({ todos: this.getTodos(this.props) });
   }
 
   checkTodo = (id) => {
     todoStoreInstance.checkTodo(id);
-    const { selectedCategory } = this.props;
+    this.setState({ todos: this.getTodos(this.props) });
+  }
+
+  getTodos(props) {
+    const { selectedCategory } = props;
     const todos = todoStoreInstance.getTodos(selectedCategory);
-    this.setState({ todos });
+    return todos;
   }
 
   render() {
-
-      const { selectedCategory } = this.props;
-      const todos = todoStoreInstance.getTodos(selectedCategory);
     return (
       <div className="todos">
         <div className="todo-input">
           <UserInput
-            className="todo-input"
             value="Add"
             placeholder="Enter todo title"
-            addCategory={this.addCategory} />
-          </div>
+            addCategory={this.addTodo} />
+        </div>
         <TodoList
-          list={todos}
-          onCheck={this.checkTodo}
-          onEdit={this.editTodo} />
+          list={this.state.todos}
+          onCheck={this.checkTodo} />
       </div>
     );
   }
-
 }

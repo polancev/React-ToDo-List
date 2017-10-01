@@ -25,3 +25,9 @@ button:focus {
 .unchecked-box {
 	margin-right: 6px;
 }
+
+.simple {
+  padding: 0 10px;
+  font-size: inherit;
+  color: inherit;
+}

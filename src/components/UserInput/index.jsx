@@ -32,7 +32,9 @@ export default class UserInput extends Component {
           placeholder={placeholder}
           onChange={this.inputChange}
           value={title} />
-        <input type="submit" value={value}/>
+        <input
+          type="submit"
+          value={value} />
       </form>
     );
   }

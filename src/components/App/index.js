@@ -12,6 +12,7 @@ import { categoryStoreInstance } from '../../stores/CategoryStore';
 class App extends Component {
   constructor(props) {
     super(props);
+
     // !tempary
     categoryStoreInstance.createCategory('Category 1', null);
     const id2 = categoryStoreInstance.createCategory('Category 2', null);
@@ -25,16 +26,15 @@ class App extends Component {
     todoStoreInstance.createTodo('To-Do Item #3', id2);
     // -------
   }
+
   render() {
     return (
       <div className="app">
         <Router>
           <Switch>
             <Route path="/" exact component={HomeView} />
-            <Route path="/todos/:category" render={({match}) => {
-              return <ListView match={match}/>
-            }} />
-            {/*<Route path="/edit/:todo" component={EditView} />*/}
+            <Route path="/todos/:categoryId" component={ListView} />
+            <Route path="/edit/:todoId" component={EditView} />
           </Switch>
         </Router>
       </div>
