@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import {Button} from '../Buttons/index';
+import {
+  Button,
+  CheckedBox,
+  UncheckedBox
+} from '../Buttons/index';
 
 import './index.css';
 
@@ -17,10 +21,18 @@ export default class EditTodo extends Component {
 
   onChange = (event) => {
     const { value, name } = event.target;
-    const { prevState } = this.state;
-    const todo = { [name]: value, ...prevState };
-    console.log(todo);
-    this.setState({ todo });
+    const { todo } = this.state;
+    const newTodo = { ...todo, [name]: value  };
+
+    this.setState({ todo: newTodo });
+  }
+
+  onCheck = () => {
+    const { todo } = this.state;
+    const checked = !todo.checked;
+    const newTodo = { ...todo, checked  };
+
+    this.setState({ todo: newTodo });
   }
 
   render() {
@@ -32,7 +44,7 @@ export default class EditTodo extends Component {
     return (
       <div className="edit-todo">
         <div className="edit-todo__buttons">
-          <Button className="simple bordered" onClick={() => closeTodo()}>Save changes</Button>
+          <Button className="simple bordered" onClick={() => closeTodo(true, todo)}>Save changes</Button>
           <Button className="simple bordered" onClick={() => closeTodo()}>Cancel</Button>
         </div>
         <div className="edit-todo__title">
@@ -44,19 +56,18 @@ export default class EditTodo extends Component {
             onChange={this.onChange} />
         </div>
         <div className="edit-todo__check">
-          <input
-            type="checkbox"
-            name="checked"
-            value={checked}
-            onChange={this.onChange}
-          />
+          {checked
+            ? <UncheckedBox onClick={this.onCheck} />
+            : <CheckedBox onClick={this.onCheck} />
+          }
+          <span>Done</span>
         </div>
         <div className="edit-todo__description">
           <textarea
             name="description"
+            placeholder="Description"
             value={description}
-            cols="30"
-            rows="10" />
+            onChange={this.onChange}/>
         </div>
       </div>
     );

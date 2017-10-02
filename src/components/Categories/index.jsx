@@ -12,13 +12,7 @@ export default class Categories extends Component {
     this.state = { categories };
   }
 
-  selectCategory = id => {
-    // const todos = todoStoreInstance.getTodos(id);
-    // this.setState({ todos, selectedCategory: id });
-  }
-
   addCategory = (title, parent) => {
-    console.log('addCategory', this);
     if (parent) {
       title = prompt('Enter category name');
       if (!title) { return; }
@@ -26,7 +20,7 @@ export default class Categories extends Component {
     categoryStoreInstance.createCategory(title, parent);
     if (parent) { categoryStoreInstance.toggleCategory(parent, true); }
     this.setState({ categories: categoryStoreInstance.getCategories() });
-  }
+  };
 
   editCategory = (id, title) => {
     const newTitle = prompt('Enter category name', title);
@@ -34,42 +28,45 @@ export default class Categories extends Component {
       categoryStoreInstance.updateCategory(id, newTitle);
       this.setState({ categories: categoryStoreInstance.getCategories() });
     }
-  }
+  };
 
   deleteCategory = id => {
     categoryStoreInstance.deleteCategory(id);
     const categories = categoryStoreInstance.getCategories();
     this.setState({categories});
-  }
+  };
 
   toggleCategory = id => {
     categoryStoreInstance.toggleCategory(id);
     const categories = categoryStoreInstance.getCategories();
     this.setState({ categories });
-  }
+  };
 
   render() {
     const { categories, selectedCategory } = this.state;
+    const { mode, onMove } = this.props;
+
     return (
       <div className="categories">
-        <div className="category-input">
-          <UserInput
-            value="Add"
-            placeholder="Enter category title"
-            addCategory={this.addCategory} />
-        </div>
+        {mode === "edit" &&
+          <div className="category-input">
+            <UserInput
+              value="Add"
+              placeholder="Enter category title"
+              addCategory={this.addCategory} />
+          </div>
+        }
         <CategoryList
           list={categories}
           parent={null}
+          mode={mode}
           selectedCategory={selectedCategory}
-          CategoryItem={this.props.CategoryItem}
+          onMove={onMove}
           onToggle={this.toggleCategory}
-          selectCategory={this.selectCategory}
           addSubCategory={this.addCategory}
           deleteCategory={this.deleteCategory}
           editCategory={this.editCategory} />
       </div>
     );
   }
-
 }

@@ -17,7 +17,7 @@ const ListView = ({ match }) => {
       </Link>
       <div className="container">
         <div className="left-panel">
-          <Categories selectedCategory={categoryId} />
+          <Categories mode="edit" />
         </div>
         <div className="right-panel">
           <Todos selectedCategory={categoryId} />

@@ -15,9 +15,9 @@ const TodoItem = ({ todo, onCheck }) => {
   return (
     <div className="todo">
       <div className="title-wrapper">
-        {!checked
-          ? <CheckedBox onClick={onCheck} />
-          : <UncheckedBox onClick={onCheck} />
+        {checked
+          ? <UncheckedBox onClick={onCheck} />
+          : <CheckedBox onClick={onCheck} />
         }
         <span className="title">{title}</span>
       </div>

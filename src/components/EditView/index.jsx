@@ -30,6 +30,10 @@ export default class EditView extends Component {
     this.props.history.goBack();
   }
 
+  onMove = (categoryId) => {
+
+  }
+
   render() {
     const { todo } = this.state;
     if (!todo) { return null; }
@@ -40,7 +44,9 @@ export default class EditView extends Component {
         <Header title={title} />
         <div className="container">
           <div className="left-panel">
-            <Categories />
+            <Categories
+              mode="move"
+              onMove={this.onMove} />
           </div>
           <div className="right-panel">
             <EditTodo
