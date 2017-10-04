@@ -9,6 +9,12 @@
   color: #6A6A6A;
 }
 
-.title {
-  margin-left: 5%;
+.todo__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.todo__title {
+  margin-left: 5px;
 }

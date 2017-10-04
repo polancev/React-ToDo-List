@@ -19,7 +19,8 @@ export default class Todos extends Component {
   }
 
   addTodo = (title) => {
-    todoStoreInstance.addTodo(title);
+    const { selectedCategory } = this.props;
+    todoStoreInstance.createTodo(title, selectedCategory);
     this.setState({ todos: this.getTodos(this.props) });
   }
 

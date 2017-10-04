@@ -43,8 +43,8 @@ export default class Categories extends Component {
   };
 
   render() {
-    const { categories, selectedCategory } = this.state;
-    const { mode, onMove } = this.props;
+    const { categories } = this.state;
+    const { mode, onMove, selectedCategory } = this.props;
 
     return (
       <div className="categories">

@@ -21,17 +21,19 @@ const CategoryItem = ({
 }) => {
   const { id, title, opened } = category;
   return (
-    <div className={selected
-      ? "category selected"
-      : "category"}>
-      {hasChildren && (opened
-        ? <AngleUpButton onClick={onToggle}/>
-        : <AngleDownButton onClick={onToggle}/>)
-      }
-      <Link to={`/todos/${id}`} className="category__title">{title}</Link>
-      <EditButton onClick={onEdit}/>
-      <DeleteButton onClick={onDelete}/>
-      <AddButton onClick={onAddSub}/>
+    <div className={selected ? "category selected" : "category"}>
+      <div className="category__wrapper">
+        {hasChildren && (opened
+          ? <AngleUpButton onClick={onToggle}/>
+          : <AngleDownButton onClick={onToggle}/>)
+        }
+        <Link to={`/todos/${id}`} className="category__title">{title}</Link>
+        <EditButton onClick={onEdit}/>
+      </div>
+      <div className="category__wrapper">
+        <DeleteButton onClick={onDelete}/>
+        <AddButton onClick={onAddSub}/>
+      </div>
     </div>
   );
 }
@@ -43,17 +45,19 @@ const CategoryMove = ({
   onToggle,
   onMove
 }) => {
-  const { id, title, opened } = category;
+  const { title, opened } = category;
   return (
-    <div className={selected
-      ? "category selected"
-      : "category"}>
-      {hasChildren && (opened
-        ? <AngleUpButton onClick={onToggle}/>
-        : <AngleDownButton onClick={onToggle}/>)
-      }
-      <Link to={`/todos/${id}`} className="category__title">{title}</Link>
-      <MoveButton onClick={onMove}/>
+    <div className={selected ? "category selected" : "category"}>
+      <div className="category__wrapper">
+        {hasChildren && (opened
+          ? <AngleUpButton onClick={onToggle}/>
+          : <AngleDownButton onClick={onToggle}/>)
+        }
+        <div className="category__title">{title}</div>
+      </div>
+      <div className="category__wrapper">
+        <MoveButton onClick={onMove}/>
+      </div>
     </div>
   );
 }

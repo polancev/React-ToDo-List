@@ -18,3 +18,7 @@
 .right-panel {
   width: 67%;
 }
+
+.center {
+  align-self: center;
+}

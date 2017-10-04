@@ -14,18 +14,20 @@ const TodoItem = ({ todo, onCheck }) => {
 
   return (
     <div className="todo">
-      <div className="title-wrapper">
+      <div className="todo__wrapper">
         {checked
           ? <UncheckedBox onClick={onCheck} />
           : <CheckedBox onClick={onCheck} />
         }
-        <span className="title">{title}</span>
+        <div className="todo__title">{title}</div>
       </div>
-      <Link to={`/edit/${id}`}>
-        <EditButton />
-      </Link>
+      <div className="todo__wrapper">
+        <Link to={`/edit/${id}`}>
+          <EditButton />
+        </Link>
+      </div>
     </div>
   );
-}
+};
 
 export default TodoItem;

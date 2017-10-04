@@ -5,7 +5,6 @@ import Header from '../Header/index';
 import Todos from '../Todos/index';
 import Categories from '../Categories/index';
 
-import './index.css';
 
 const ListView = ({ match }) => {
   const { categoryId } = match.params;
@@ -17,7 +16,9 @@ const ListView = ({ match }) => {
       </Link>
       <div className="container">
         <div className="left-panel">
-          <Categories mode="edit" />
+          <Categories
+            mode="edit"
+            selectedCategory={categoryId} />
         </div>
         <div className="right-panel">
           <Todos selectedCategory={categoryId} />
@@ -25,6 +26,6 @@ const ListView = ({ match }) => {
       </div>
     </div>
   );
-}
+};
 
 export default ListView;

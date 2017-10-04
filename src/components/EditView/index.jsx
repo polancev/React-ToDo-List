@@ -23,16 +23,36 @@ export default class EditView extends Component {
     return todoStoreInstance.getTodo(todoId);
   }
 
+  onChange = (event) => {
+    const { value, name } = event.target;
+    const { todo } = this.state;
+    const newTodo = { ...todo, [name]: value  };
+
+    this.setState({ todo: newTodo });
+  };
+
+  onCheck = () => {
+    const { todo } = this.state;
+    const checked = !todo.checked;
+    const newTodo = { ...todo, checked  };
+
+    this.setState({ todo: newTodo });
+  };
+
   closeTodo = (needSave, newTodo) => {
     if (needSave) {
       todoStoreInstance.updateTodo(newTodo);
     }
     this.props.history.goBack();
+  };
+
+  onMove = (category) => {
+    const { todo } = this.state;
+    const newTodo = { ...todo, category  };
+
+    this.setState({ todo: newTodo });
   }
 
-  onMove = (categoryId) => {
-
-  }
 
   render() {
     const { todo } = this.state;
@@ -46,12 +66,17 @@ export default class EditView extends Component {
           <div className="left-panel">
             <Categories
               mode="move"
+              selectedCategory={todo.category}
               onMove={this.onMove} />
           </div>
           <div className="right-panel">
             <EditTodo
               todo={todo}
-              closeTodo={this.closeTodo} />
+              closeTodo={this.closeTodo}
+              onChange={this.onChange}
+              onCheck={this.onCheck}
+              onMove={this.onMove}
+            />
           </div>
         </div>
       </div>
