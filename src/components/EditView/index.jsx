@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { inject, observer } from 'mobx-react';
 import Header from '../Header/index';
 import Categories from '../Categories/index';
 import EditTodo from '../EditTodo/index';
 
-import {todoStoreInstance} from "../../stores/TodoStore";
 
-export default class EditView extends Component {
+
+class EditView extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +20,7 @@ export default class EditView extends Component {
 
   getTodo(props) {
     const { todoId } = props.match.params;
-    return todoStoreInstance.getTodo(todoId);
+    return props.store.getTodo(todoId);
   }
 
   onChange = (event) => {
@@ -33,15 +33,15 @@ export default class EditView extends Component {
 
   onCheck = () => {
     const { todo } = this.state;
-    const checked = !todo.checked;
-    const newTodo = { ...todo, checked  };
+    const done = !todo.done;
+    const newTodo = { ...todo, done  };
 
     this.setState({ todo: newTodo });
   };
 
   closeTodo = (needSave, newTodo) => {
     if (needSave) {
-      todoStoreInstance.updateTodo(newTodo);
+      this.props.store.updateTodo(newTodo);
     }
     this.props.history.goBack();
   };
@@ -75,7 +75,6 @@ export default class EditView extends Component {
               closeTodo={this.closeTodo}
               onChange={this.onChange}
               onCheck={this.onCheck}
-              onMove={this.onMove}
             />
           </div>
         </div>
@@ -83,3 +82,5 @@ export default class EditView extends Component {
     );
   }
 }
+
+export default inject('store')(observer(EditView));

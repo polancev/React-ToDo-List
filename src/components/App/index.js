@@ -1,42 +1,26 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'mobx-react';
 import './index.css';
 
 import HomeView from '../HomeView/index';
 import ListView from '../ListView/index';
 import EditView from '../EditView/index';
 
-import { todoStoreInstance } from '../../stores/TodoStore';
-import { categoryStoreInstance } from '../../stores/CategoryStore';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    // !tempary
-    categoryStoreInstance.createCategory('Category 1', null);
-    const id2 = categoryStoreInstance.createCategory('Category 2', null);
-    const id3 = categoryStoreInstance.createCategory('Category 3', null);
-    categoryStoreInstance.createCategory('Category 3 1', id3);
-    categoryStoreInstance.createCategory('Category 3 2', id3);
-    categoryStoreInstance.toggleCategory(id3, true);
-
-    todoStoreInstance.createTodo('To-Do Item #1', id2);
-    todoStoreInstance.createTodo('To-Do Item #2', id2);
-    todoStoreInstance.createTodo('To-Do Item #3', id2);
-    // -------
-  }
-
   render() {
     return (
       <div className="app">
-        <Router>
-          <Switch>
-            <Route path="/" exact component={HomeView} />
-            <Route path="/todos/:categoryId" component={ListView} />
-            <Route path="/edit/:todoId" component={EditView} />
-          </Switch>
-        </Router>
+        <Provider store={this.props.store}>
+          <Router>
+            <Switch>
+              <Route path="/" exact component={HomeView} />
+              <Route path="/todos/:categoryId" component={ListView} />
+              <Route path="/edit/:todoId" component={EditView} />
+            </Switch>
+          </Router>
+        </Provider>
       </div>
     );
   }

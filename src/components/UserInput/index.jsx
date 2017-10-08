@@ -15,7 +15,7 @@ export default class UserInput extends Component {
     event.preventDefault();
     const title = this.state.title;
     if (title) {
-      this.props.addCategory(title);
+      this.props.onSubmit(title);
       this.setState({ title: '' })
     }
   }

@@ -9,17 +9,17 @@ import {
 
 import './index.css';
 
-const TodoItem = ({ todo, onCheck }) => {
-  const { id, title, checked } = todo;
-
+const TodoItem = ({ todo, onCheck, done }) => {
+  const { id, title } = todo;
+  
   return (
     <div className="todo">
       <div className="todo__wrapper">
-        {checked
+        { !done
           ? <UncheckedBox onClick={onCheck} />
           : <CheckedBox onClick={onCheck} />
         }
-        <div className="todo__title">{title}</div>
+        <div className={done ? "todo__title done" : "todo__title"}>{title}</div>
       </div>
       <div className="todo__wrapper">
         <Link to={`/edit/${id}`}>
